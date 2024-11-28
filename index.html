@@ -316,6 +316,58 @@
             -ms-user-select: text;
             user-select: text;
         }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 7px;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 1;
+            transition: opacity 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .scroll-indicator:hover {
+            border-color: rgba(255, 255, 255, 0.8);  /* Brighter border on hover */
+        }
+
+        .scroll-circle {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #64ffda;
+            border-radius: 3.5px;
+            animation: scrollAnimation 2.5s cubic-bezier(.4,0,.2,1) infinite;
+        }
+
+        
+        @keyframes scrollAnimation {
+            0% {
+                top: 4px;
+                opacity: 1;
+            }
+            60% {
+                top: 30px;  /* Adjusted end position to stay within container */
+                opacity: 0.5;
+            }
+            61% {
+                top: 4px;
+                opacity: 0.5;
+            }
+            100% {
+                top: 4px;
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -360,6 +412,9 @@
         <section id="home">
             <h1><span id="hello-text">Hello,</span> I am Anish!</h1>
             <p>Content goes here...</p>
+            <div class="scroll-indicator">
+                <div class="scroll-circle"></div>
+            </div>
         </section>
 
         <section id="experience">
@@ -418,6 +473,24 @@
             } else {
                 header.classList.remove('header-scrolled');
             }
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const experienceSection = document.getElementById('experience');
+            const experiencePosition = experienceSection.getBoundingClientRect().top;
+            
+            if (experiencePosition < window.innerHeight) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+            }
+        });
+
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.getElementById('experience').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
         });
 
         const greetings = [
