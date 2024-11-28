@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Radley&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -48,6 +49,31 @@
             color: #ffffff;
             line-height: 1.6;
         }
+
+        #home {
+            text-align: center;
+            padding-top: 12rem;
+        }
+
+        #home h1 {
+            font-family: 'Radley', serif;
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: #64ffda;
+            font-weight: 300;
+        }
+
+        #hello-text {
+            color: #ffffff;
+            font-style: italic;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #hello-text.fade {
+            opacity: 0;
+        }
+
 
         /* Header styles remain the same */
         header {
@@ -175,7 +201,7 @@
             max-width: 1000px; /* Reduced to account for sidebar */
             margin: 0 auto;
             padding: 0 2rem;
-            margin-left: calc(4rem + 100px); /* Added margin for social sidebar */
+            position: relative; /* Added margin for social sidebar */
         }
 
         section {
@@ -332,7 +358,7 @@
     <!-- Main Content -->
     <main>
         <section id="home">
-            <h1>Welcome to my portfolio</h1>
+            <h1><span id="hello-text">Hello,</span> I am Anish!</h1>
             <p>Content goes here...</p>
         </section>
 
@@ -393,6 +419,37 @@
                 header.classList.remove('header-scrolled');
             }
         });
+
+        const greetings = [
+            { text: "Hello,", language: "English" },
+            { text: "Bonjour,", language: "French" },
+            { text: "こんにちは,", language: "Japanese" },
+            { text: "नमस्ते,", language: "Hindi" },
+            { text: "Hola,", language: "Spanish" },
+            { text: "నమస్తే,", language: "Telugu" },
+            { text: "你好,", language: "Mandarin" },
+            { text: "مرحبا,", language: "Arabic" },
+            { text: "Hallo,", language: "German" },
+            { text: "Привет,", language: "Russian" },
+            { text: "안녕하세요,", language: "Korean" }
+        ];
+
+        const helloText = document.getElementById('hello-text');
+        let currentIndex = 0;
+
+        function changeGreeting() {
+            helloText.classList.add('fade');
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % greetings.length;
+                helloText.textContent = greetings[currentIndex].text;
+                helloText.classList.remove('fade');
+            }, 500);
+        }
+
+        // Change greeting every 3 seconds
+        setInterval(changeGreeting, 2000);
+                
     </script>
 </body>
 </html>
