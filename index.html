@@ -52,20 +52,24 @@
         /* Header styles remain the same */
         header {
             position: fixed;
-            width: 100%;
+            width: auto;
             top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
             transition: all 0.3s ease;
-            padding: 0 1rem;
+            padding: 0.5 1rem;
         }
 
         .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 100%;
             background: rgba(37, 37, 37, 0);
             backdrop-filter: blur(0);
             border-radius: 16px;
-            padding: 1rem 2rem;
+            padding: 0.8rem 0.8rem;
             transition: all 0.3s ease;
         }
 
@@ -77,13 +81,14 @@
 
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
+            padding-left: 0.8rem;
         }
 
         .nav-links a {
@@ -102,12 +107,13 @@
         .resume-btn {
             background-color: #64ffda;
             color: #1a1a1a;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            transform: scale(1);
+            margin-left: 2rem;
+            margin-right: 0;
         }
 
         .resume-btn:hover {
@@ -297,7 +303,7 @@
                     <a href="#projects">Projects</a>
                     <a href="/blog">Blog</a>
                 </div>
-                <a href="/resume.pdf" class="resume-btn" download>Download Resume</a>
+                <a href="/resume.pdf" class="resume-btn" download>Resume ↓</a>
             </nav>
         </div>
     </header>
