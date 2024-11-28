@@ -74,6 +74,70 @@
             opacity: 0;
         }
 
+        /* Add after your existing #home styles */
+        .subtitle {
+            font-size: 1.3rem;
+            color: #eeeeee;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: #a7a7a7;
+            margin-bottom: 3rem;
+            opacity: 1;
+        }
+
+        .skills-container {
+            max-width: 700px;
+            margin: 3rem auto;
+        }
+
+        .skills-title {
+            margin-top: 6rem;
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            opacity: 1;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(206, 163, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid #cea3ff4f;
+        }
+
+        .skill-tag:hover {
+            background: rgba(206, 163, 255, 0.15);
+            border: 1px solid #cea3ff;
+        }
+
+        .skill-tag svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .skill-tag span {
+            color: #ffffff;
+            font-size: 1rem;
+        }
 
         /* Header styles remain the same */
         header {
@@ -422,7 +486,73 @@
     <main>
         <section id="home">
             <h1><span id="hello-text">Hello,</span> I am Anish!</h1>
-            <p>Content goes here...</p>
+            <div class="subtitle">Machine Learning Engineer | Computer Science Student</div>
+            <div class="location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Waterloo, Canada
+            </div>
+        
+            <div class="skills-container">
+                <div class="skills-title">Technologies I work with</div>
+                <div class="skills-grid">
+                    <!-- NLP -->
+                    <div class="skill-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>NLP</span>
+                    </div>
+        
+                    <!-- LLM -->
+                    <div class="skill-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                        <span>LLM</span>
+                    </div>
+        
+                    <!-- Python -->
+                    <div class="skill-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2c-4 0-6 3-6 6v10c0 3 2 6 6 6s6-3 6-6V8c0-3-2-6-6-6Z"></path>
+                            <path d="M6 8h12"></path>
+                            <path d="M12 2v20"></path>
+                        </svg>
+                        <span>Python</span>
+                    </div>
+        
+                    <!-- TensorFlow -->
+                    <div class="skill-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 9 L12 3 L22 9 L22 15 L12 21 L2 15 Z"></path>
+                            <path d="M12 3 L12 21"></path>
+                            <path d="M2 9 L22 15"></path>
+                            <path d="M22 9 L2 15"></path>
+                        </svg>
+                        <span>TensorFlow</span>
+                    </div>
+        
+                    <!-- PyTorch -->
+                    <div class="skill-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 7a5 5 0 1 0 0 10 5 5 0 1 0 0-10z"></path>
+                            <line x1="12" y1="3" x2="12" y2="7"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                            <line x1="3" y1="12" x2="7" y2="12"></line>
+                            <line x1="17" y1="12" x2="21" y2="12"></line>
+                        </svg>
+                        <span>PyTorch</span>
+                    </div>
+        
+                    <!-- Add more skill tags as needed -->
+                </div>
+            </div>
             <div class="scroll-indicator">
                 <div class="scroll-circle"></div>
             </div>
@@ -477,6 +607,15 @@
     </main>
 
     <script>
+        window.addEventListener('load', () => {
+            // Reset scroll position to top on page refresh
+            if (window.location.hash) {
+                window.scrollTo(0, 0);
+                // Clear the hash without adding to browser history
+                history.replaceState(null, null, ' ');
+            }
+        });
+
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 1) {
