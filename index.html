@@ -135,7 +135,7 @@
         }
 
         .resume-btn:hover {
-            background-color: #4ad3b3;
+            background-color: #ffffff;
             transform: scale(1.01);
         }
 
@@ -295,6 +295,7 @@
             gap: 2rem;
             grid-template-columns: 1fr;
             max-width: 800px;
+            margin: 0 auto;
         }
 
         .experience-tile {
@@ -308,59 +309,57 @@
         }
 
         .experience-tile:hover {
-            transform: scale(1.01);
+            transform: scale(1.005);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        .job-title {
+            color: #cea3ff;
+            font-size: 1.4rem;
+            font-weight: 400;
             margin-bottom: 1rem;
         }
 
-        .company-info h3 {
-            color: #cea3ff;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .position-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .job-title {
-            color: #ffffff;
+        
+        .company-name {
+            color: #eaeaea;
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
         }
 
         .date {
+            color: #bbbbbb;
+            font-size: 1rem;
+        }
+        
+        .job-location {
             color: #888888;
             font-size: 0.9rem;
         }
 
-        .experience-description {
-            color: #cccccc;
-            margin-top: 1rem;
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
+        .hidden {
+            display: none !important;
         }
 
-        .experience-description ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .experience-description li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .experience-description li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
+        .see-more {
+            text-align: center;
+            margin-top: 2rem;
+            cursor: pointer;
             color: #cea3ff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .see-more:hover {
+            color: #ffffff;
+        }
+
+        .experience-tile:not(.hidden) {
+            display: grid;
         }
 
         /* ============================
@@ -500,6 +499,47 @@
                 transform: none;
                 justify-content: flex-start;
             }
+        }
+
+        /* ============================
+           10. Contact
+           ============================ */
+           #contact {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(37, 37, 37, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-container:hover {
+            transform: scale(1.005);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .contact-email {
+            color: #cea3ff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #ffffff;
         }
     </style>
 </head>
@@ -666,40 +706,105 @@
         <section id="experience">
             <h2>Experience</h2>
             <div class="experience-grid">
-                <div class="experience-tile">
-                    <div class="experience-header">
-                        <div class="company-info">
-                            <h3>Company Name</h3>
-                            <div class="job-title">Position Title</div>
-                            <div class="date">January 2023 - Present</div>
-                        </div>
+                <!-- 1 -->
+                <div class="experience-tile visible">
+                    <div class="position-row">
+                        <div class="job-title">ML Engineer</div>
+                        <div class="date">April 2024 - Present</div>
                     </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Key achievement or responsibility 1</li>
-                            <li>Key achievement or responsibility 2</li>
-                            <li>Key achievement or responsibility 3</li>
-                        </ul>
+                    <div class="position-row">
+                        <div class="company-name">OCAS</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div>
+    
+                <!-- 2 -->
+                <div class="experience-tile visible">
+                    <div class="position-row">
+                        <div class="job-title">AI Researcher</div>
+                        <div class="date">September 2023 - April 2024</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">SMART Centre</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div>
+    
+                <!-- 3 -->
+                <div class="experience-tile visible">
+                    <div class="position-row">
+                        <div class="job-title">Executive Lead</div>
+                        <div class="date">November 2023 - Present</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">Google Developer Groups - On Campus</div>
+                        <div class="job-location">Waterloo, Canada</div>
                     </div>
                 </div>
 
-                <div class="experience-tile">
-                    <div class="experience-header">
-                        <div class="company-info">
-                            <h3>Previous Company</h3>
-                            <div class="job-title">Previous Role</div>
-                            <div class="date">June 2021 - December 2022</div>
-                        </div>
+                <!-- See More...-->
+                <!-- 4 -->
+                <div class="experience-tile hidden extra">
+                    <div class="position-row">
+                        <div class="job-title">Co-op Peer Mentor</div>
+                        <div class="date">September 2024 - Present</div>
                     </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Developed and maintained key features for the company's main product</li>
-                            <li>Led a team of 3 developers in successful project delivery</li>
-                            <li>Reduced system response time by 40% through optimization</li>
-                        </ul>
+                    <div class="position-row">
+                        <div class="company-name">Conestoga College</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div>
+    
+                <!-- 5 -->
+                <div class="experience-tile hidden extra">
+                    <div class="position-row">
+                        <div class="job-title">Peer Assisted Learning Leader</div>
+                        <div class="date">September 2024 - Present</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">Conestoga College</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div>
+
+                <!-- 6
+                <div class="experience-tile hidden extra">
+                    <div class="position-row">
+                        <div class="job-title">President & Founder</div>
+                        <div class="date">January 2025 - Present</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">Conestoga Computing Society</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div> -->
+
+                <!-- 7 -->
+                <div class="experience-tile hidden extra">
+                    <div class="position-row">
+                        <div class="job-title">President & Co-Founder</div>
+                        <div class="date">May 2023 - Present</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">ConHacks (Hackathon)</div>
+                        <div class="job-location">Waterloo, Canada</div>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="experience-tile hidden extra">
+                    <div class="position-row">
+                        <div class="job-title">Student Lead</div>
+                        <div class="date">February 2018 - August 2020</div>
+                    </div>
+                    <div class="position-row">
+                        <div class="company-name">Atal Tinkering Labs</div>
+                        <div class="job-location">Hyderabad, India</div>
                     </div>
                 </div>
             </div>
+            
+            <div class="see-more" onclick="toggleExperiences()">See More...</div>
         </section>
 
         <!-- Projects Section -->
@@ -707,6 +812,7 @@
             <h2>Projects</h2>
             <p>Content goes here...</p>
         </section>
+
     </main>
 
     <!-- JavaScript -->
@@ -729,6 +835,25 @@
         });
 
         // ============================
+        // See more... Button
+        // ============================
+        function toggleExperiences() {
+            const extraExperiences = document.querySelectorAll('.experience-tile.extra');
+            const seeMoreBtn = document.querySelector('.see-more');
+            const isExpanded = extraExperiences[0].classList.contains('hidden');
+            
+            extraExperiences.forEach(exp => {
+                if (isExpanded) {
+                    exp.classList.remove('hidden');
+                } else {
+                    exp.classList.add('hidden');
+                }
+            });
+            
+            seeMoreBtn.textContent = isExpanded ? 'See Less...' : 'See More...';
+        }
+
+        // ============================
         // Scroll Handling
         // ============================
         const handleScroll = () => {
@@ -740,8 +865,14 @@
             const scrollIndicator = qs('.scroll-indicator');
             const experienceSection = qs('#experience');
             const experiencePosition = experienceSection.getBoundingClientRect().top;
-            scrollIndicator.style.opacity = experiencePosition < window.innerHeight ? '0' : '1';
-
+            if (experiencePosition < window.innerHeight) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+            } else {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+            }
+            
             // Navigation highlight
             const sections = qsa('section');
             const navLinks = qsa('.nav-links a');
