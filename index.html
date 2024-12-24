@@ -541,6 +541,112 @@
         .contact-email:hover {
             color: #ffffff;
         }
+
+        /* ============================
+        11. Spotify
+        ============================ */
+        .spotify-container {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            background: rgba(37, 37, 37, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+            max-width: 300px;
+        }
+
+        .spotify-container:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .spotify-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spotify-icon {
+            color: #1DB954;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .spotify-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            overflow: hidden;
+        }
+
+        .now-playing {
+            color: #1DB954;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+        }
+
+        .spotify-track-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .spotify-song, .spotify-artist {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .scroll-container {
+            display: inline-flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        .song-scroll, .artist-scroll {
+            padding-right: 50px;
+        }
+
+        .spotify-song {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .spotify-artist {
+            color: #a7a7a7;
+            font-size: 0.8rem;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .spotify-container:hover .scroll-container {
+            animation-play-state: paused;
+        }
+
+        /* Add responsive design for the Spotify container */
+        @media (max-width: 768px) {
+            .spotify-container {
+                right: 1rem;
+                bottom: 1rem;
+                padding: 0.6rem 1rem;
+                max-width: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -579,6 +685,32 @@
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
         </a>
+    </div>
+
+    <div class="spotify-container">
+        <div class="spotify-content">
+            <div class="spotify-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+            </div>
+            <div class="spotify-text">
+                <div class="now-playing">Now Playing</div>
+                <div class="spotify-track-info">
+                    <div class="spotify-song">
+                        <div class="scroll-container">
+                            <div class="song-scroll">The Nights (Avicii) ft. Nicholas Furlong Extended Mix</div>
+                            <div class="song-scroll" aria-hidden="true">The Nights (Avicii) ft. Nicholas Furlong Extended Mix</div>
+                        </div>
+                    </div>
+                    <div class="spotify-artist">
+                        <div class="scroll-container">
+                            <div class="artist-scroll">Avicii, Nicholas Furlong</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content -->
@@ -953,6 +1085,39 @@
             skillsGrid.classList.toggle('show-advanced');
             toggleLabels.forEach(label => label.classList.toggle('active'));
         });
+
+        function checkOverflow() {
+            const songContainers = document.querySelectorAll('.spotify-song');
+            const artistContainers = document.querySelectorAll('.spotify-artist');
+            
+            songContainers.forEach(container => {
+                const scrollContainer = container.querySelector('.scroll-container');
+                const textContent = container.querySelector('.song-scroll');
+                
+                if (textContent.offsetWidth <= container.offsetWidth) {
+                    scrollContainer.style.animation = 'none';
+                    scrollContainer.style.justifyContent = 'flex-start';
+                } else {
+                    scrollContainer.style.animation = 'scroll 20s linear infinite';
+                }
+            });
+            
+            artistContainers.forEach(container => {
+                const scrollContainer = container.querySelector('.scroll-container');
+                const textContent = container.querySelector('.artist-scroll');
+                
+                if (textContent.offsetWidth <= container.offsetWidth) {
+                    scrollContainer.style.animation = 'none';
+                    scrollContainer.style.justifyContent = 'flex-start';
+                } else {
+                    scrollContainer.style.animation = 'scroll 20s linear infinite';
+                }
+            });
+        }
+
+        // Run on page load and window resize
+        window.addEventListener('load', checkOverflow);
+        window.addEventListener('resize', checkOverflow);
     </script>
 </body>
 </html>
