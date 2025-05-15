@@ -24,7 +24,7 @@
         a, button, .resume-btn, .nav-links a, 
         .social-sidebar a, .social-sidebar a svg,
         .scroll-indicator, .scroll-indicator *, .scroll-circle,
-        .toggle-switch, .toggle-slider {
+        .toggle-switch, .toggle-slider, .ai-send-btn {
             cursor: pointer !important;
         }
 
@@ -41,6 +41,8 @@
             background-color: #1a1a1a;
             color: #ffffff;
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
 
         /* ============================
@@ -93,7 +95,7 @@
         .header-scrolled .header-container {
             background: rgba(37, 37, 37, 0.8);
             backdrop-filter: blur(8px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(206, 163, 255, 0.4);
         }
 
         /* Navigation styles */
@@ -129,14 +131,16 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin-left: 2rem;
             margin-right: 0;
+            border: 1px solid transparent;
         }
 
         .resume-btn:hover {
-            background-color: #ffffff;
-            transform: scale(1.01);
+            background-color: #e0caff;
+            box-shadow: 0 0 12px rgba(206, 163, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         /* ============================
@@ -154,6 +158,11 @@
             padding: 1rem;
             border-radius: 12px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-sidebar.scrolled {
+            box-shadow: 0 0 20px rgba(206, 163, 255, 0.4);
         }
 
         .social-sidebar a {
@@ -178,6 +187,39 @@
 
         .social-sidebar a:hover svg {
             color: #cea3ff;
+        }
+
+        /* ============================
+           4b. Right Sidebar
+           ============================ */
+        .right-sidebar {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: rgba(37, 37, 37, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .right-sidebar.scrolled {
+            box-shadow: 0 0 20px rgba(206, 163, 255, 0.4);
+        }
+
+        .placeholder-item {
+            width: 24px;
+            height: 24px;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
         }
 
         /* ============================
@@ -225,279 +267,134 @@
         }
 
         /* ============================
-           6. Skills Section
+           7. Experience & Projects Placeholders
            ============================ */
-        .skills-container {
-            max-width: 700px;
-            margin: 3rem auto;
-        }
-
-        .skills-title {
-            margin-top: 6rem;
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
-
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-tag {
-            background: rgba(206, 163, 255, 0.1);
-            padding: 0.5rem 1.2rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid #cea3ff4f;
-        }
-
-        .skill-tag:hover {
-            background: rgba(206, 163, 255, 0.15);
-            border: 1px solid #cea3ff;
-        }
-
-        .skill-tag img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        .skill-tag span {
-            color: #ffffff;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        /* Skills toggle functionality */
-        .skills-grid .skill-tag.advanced {
-            display: none;
-        }
-
-        .skills-grid.show-advanced .skill-tag.advanced {
-            display: flex;
-        }
-
-        /* ============================
-           7. Experience Section
-           ============================ */
-        .experience-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .experience-tile {
-            background: rgba(37, 37, 37, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            transform: scale(1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .experience-tile:hover {
-            transform: scale(1.005);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .job-title {
-            color: #cea3ff;
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .position-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .company-name {
-            color: #eaeaea;
-            font-size: 1.2rem;
-        }
-
-        .date {
-            color: #bbbbbb;
-            font-size: 1rem;
-        }
-        
-        .job-location {
-            color: #888888;
-            font-size: 0.9rem;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .see-more {
+        .placeholder-message {
             text-align: center;
-            margin-top: 2rem;
-            cursor: pointer;
-            color: #cea3ff;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .see-more:hover {
-            color: #ffffff;
-        }
-
-        .experience-tile:not(.hidden) {
-            display: grid;
+            color: #a7a7a7;
+            font-size: 1.2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            background: rgba(37, 37, 37, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px dashed rgba(206, 163, 255, 0.3);
         }
 
         /* ============================
-           8. UI Components
+           8. AI Input
            ============================ */
-        /* Scroll Indicator */
-        .scroll-indicator {
+        .ai-input-container {
             position: fixed;
+            left: 50%;
             bottom: 2rem;
-            left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 34px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 7px;
-            z-index: 100;
-            opacity: 1;
-            transition: opacity 0.3s ease, border-color 0.3s ease;
-            overflow: hidden;
+            z-index: 90;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 1rem;
         }
 
-        .scroll-indicator:hover {
-            border-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .scroll-circle {
-            position: absolute;
-            top: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background-color: #cea3ff;
-            border-radius: 3.5px;
-            animation: scrollAnimation 3s cubic-bezier(.4,0,.2,1) infinite;
-        }
-
-        @keyframes scrollAnimation {
-            0% { top: 4px; opacity: 1; }
-            30% { top: 30px; opacity: 0.5; }
-            40% { top: 30px; opacity: 0; }
-            41% { top: 4px; opacity: 0; }
-            45% { top: 4px; opacity: 0; }
-            50% { top: 4px; opacity: 1; }
-            100% { top: 4px; opacity: 1; }
-        }
-
-        /* View Toggle */
-        .view-options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .view-description {
-            font-size: 0.6rem;
-            color: #a7a7a7;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .view-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .toggle-switch {
+        .ai-input-wrapper {
             position: relative;
-            display: inline-block;
-            width: 36px;
-            height: 20px;
+            display: flex;
+            align-items: center;
+            background: rgba(37, 37, 37, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 0;
+            border: 1px solid rgba(206, 163, 255, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            width: 250px;
+            margin: 0 auto;
+            height: 40px;
         }
 
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(206, 163, 255, 0.2);
-            transition: .4s;
-            border-radius: 34px;
+        .ai-input-wrapper:hover {
+            box-shadow: 0 0 12px rgba(206, 163, 255, 0.3);
             border: 1px solid rgba(206, 163, 255, 0.3);
         }
 
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 2px;
-            bottom: 2px;
+        .ai-input-wrapper:focus-within {
+            width: 400px;
+            box-shadow: 0 0 20px rgba(206, 163, 255, 0.4);
+            border: 1px solid rgba(206, 163, 255, 0.5);
+        }
+
+        .ai-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            padding: 0 0 0 16px;
+            width: 100%;
+            height: 100%;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .ai-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .ai-send-btn {
             background-color: #cea3ff;
-            transition: .4s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            min-width: 0;
+            min-height: 0;
+            margin: 0;
+            padding: 0;
             border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer !important;
+            flex-shrink: 0;
+            position: relative;
+            right: 0;
         }
 
-        .toggle-switch input:checked + .toggle-slider {
-            background-color: rgba(206, 163, 255, 0.4);
+        .ai-input-wrapper:focus-within .ai-send-btn {
+            opacity: 1;
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            min-height: 24px;
+            margin: 0 8px;
         }
 
-        .toggle-switch input:checked + .toggle-slider:before {
-            transform: translateX(16px);
+        .ai-send-btn svg {
+            stroke: #1a1a1a;
+            fill: none;
+            transition: all 0.2s ease;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            cursor: pointer !important;
+            width: 12px;
+            height: 12px;
         }
 
-        .toggle-label {
-            color: #a7a7a7;
-            font-size: 0.8rem;
+        .ai-send-btn:hover {
+            background-color: #e0caff;
+            box-shadow: 0 0 8px rgba(206, 163, 255, 0.5);
         }
 
-        .toggle-label.active {
-            color: #cea3ff;
-        }
-
-        /* ============================
-           9. Responsive Design
-           ============================ */
         @media (max-width: 768px) {
-            main {
-                margin-left: auto;
-                padding: 0 1rem;
+            .ai-input-wrapper {
+                width: 200px;
             }
-
-            .social-sidebar {
-                left: 2rem;
-                transform: none;
-                justify-content: flex-start;
+            
+            .ai-input-wrapper:focus-within {
+                width: 300px;
             }
         }
 
@@ -543,110 +440,24 @@
         }
 
         /* ============================
-        11. Spotify
-        ============================ */
-        .spotify-container {
-            position: fixed;
-            right: 2rem;
-            bottom: 2rem;
-            background: rgba(37, 37, 37, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 0.8rem 1.2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            z-index: 100;
-            max-width: 300px;
-        }
-
-        .spotify-container:hover {
-            transform: scale(1.02);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .spotify-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .spotify-icon {
-            color: #1DB954;
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .spotify-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            overflow: hidden;
-        }
-
-        .now-playing {
-            color: #1DB954;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.2rem;
-        }
-
-        .spotify-track-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        .spotify-song, .spotify-artist {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .scroll-container {
-            display: inline-flex;
-            animation: scroll 20s linear infinite;
-        }
-
-        .song-scroll, .artist-scroll {
-            padding-right: 50px;
-        }
-
-        .spotify-song {
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .spotify-artist {
-            color: #a7a7a7;
-            font-size: 0.8rem;
-        }
-
-        @keyframes scroll {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Pause animation on hover */
-        .spotify-container:hover .scroll-container {
-            animation-play-state: paused;
-        }
-
-        /* Add responsive design for the Spotify container */
+           10. Responsive Design
+           ============================ */
         @media (max-width: 768px) {
-            .spotify-container {
-                right: 1rem;
-                bottom: 1rem;
-                padding: 0.6rem 1rem;
-                max-width: 250px;
+            main {
+                margin-left: auto;
+                padding: 0 1rem;
+            }
+
+            .social-sidebar {
+                left: 2rem;
+                transform: none;
+                justify-content: flex-start;
             }
         }
+
+        /* ============================
+           11. Spotify - REMOVED
+           ============================ */
     </style>
 </head>
 <body>
@@ -687,30 +498,12 @@
         </a>
     </div>
 
-    <div class="spotify-container">
-        <div class="spotify-content">
-            <div class="spotify-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                </svg>
-            </div>
-            <div class="spotify-text">
-                <div class="now-playing">Now Playing</div>
-                <div class="spotify-track-info">
-                    <div class="spotify-song">
-                        <div class="scroll-container">
-                            <div class="song-scroll">The Nights (Avicii) ft. Nicholas Furlong Extended Mix</div>
-                            <div class="song-scroll" aria-hidden="true">The Nights (Avicii) ft. Nicholas Furlong Extended Mix</div>
-                        </div>
-                    </div>
-                    <div class="spotify-artist">
-                        <div class="scroll-container">
-                            <div class="artist-scroll">Avicii, Nicholas Furlong</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+        <!-- Empty placeholders to match dimensions of social sidebar -->
+        <div class="placeholder-item"></div>
+        <div class="placeholder-item"></div>
+        <div class="placeholder-item"></div>
     </div>
 
     <!-- Main Content -->
@@ -727,224 +520,35 @@
                 Waterloo, Canada
             </div>
 
-            <!-- Skills Section -->
-            <div class="skills-container">
-                <div class="skills-title">Technologies I work with</div>
-                
-                <div class="view-options">
-                    <div class="view-description">Display Options</div>
-                    <div class="view-toggle">
-                        <span class="toggle-label active" data-view="simple">Compact View</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="viewToggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span class="toggle-label" data-view="advanced">Detailed View</span>
-                    </div>
+            <!-- AI Assistant Input -->
+            <div class="ai-input-container">
+                <div class="ai-input-wrapper">
+                    <input type="text" class="ai-input" placeholder="Ask anything...">
+                    <button class="ai-send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 12 7-7 7 7"></path>
+                            <path d="M12 19V5"></path>
+                        </svg>
+                    </button>
                 </div>
-
-                <div class="skills-grid">
-                    <!-- Core Skills (Always Visible) -->
-                    <div class="skill-tag">
-                        <img src="images/python.png" alt="Python">
-                        <span>Python</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/pytorch.png" alt="PyTorch">
-                        <span>PyTorch</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/tensorflow.png" alt="TensorFlow">
-                        <span>TensorFlow</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/langchain.png" alt="Langchain">
-                        <span>Langchain</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/llamaindex.png" alt="LlamaIndex">
-                        <span>LlamaIndex</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/docker.png" alt="Docker">
-                        <span>Docker</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/kubernetes.png" alt="Kubernetes">
-                        <span>Kubernetes</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/sklearn.png" alt="Scikit-learn">
-                        <span>Scikit-learn</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/pandas.png" alt="Pandas">
-                        <span>Pandas</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/git.png" alt="Git">
-                        <span>Git</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/azure.png" alt="Azure">
-                        <span>Azure</span>
-                    </div>
-                    <div class="skill-tag">
-                        <img src="images/huggingface.png" alt="Hugging Face">
-                        <span>Hugging Face</span>
-                    </div>
-                    
-                    <!-- Advanced Skills (Toggle Visible) -->
-                    <div class="skill-tag advanced">
-                        <img src="images/llamaindex.png" alt="LlamaIndex">
-                        <span>LlamaIndex</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/docker.png" alt="Docker">
-                        <span>Docker</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/kubernetes.png" alt="Kubernetes">
-                        <span>Kubernetes</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/sklearn.png" alt="Scikit-learn">
-                        <span>Scikit-learn</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/pandas.png" alt="Pandas">
-                        <span>Pandas</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/git.png" alt="Git">
-                        <span>Git</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/azure.png" alt="Azure">
-                        <span>Azure</span>
-                    </div>
-                    <div class="skill-tag advanced">
-                        <img src="images/huggingface.png" alt="Hugging Face">
-                        <span>Hugging Face</span>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-circle"></div>
             </div>
         </section>
 
         <!-- Experience Section -->
         <section id="experience">
             <h2>Experience</h2>
-            <div class="experience-grid">
-                <!-- 1 -->
-                <div class="experience-tile visible">
-                    <div class="position-row">
-                        <div class="job-title">ML Engineer</div>
-                        <div class="date">April 2024 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">OCAS</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-    
-                <!-- 2 -->
-                <div class="experience-tile visible">
-                    <div class="position-row">
-                        <div class="job-title">AI Researcher</div>
-                        <div class="date">September 2023 - April 2024</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">SMART Centre</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-    
-                <!-- 3 -->
-                <div class="experience-tile visible">
-                    <div class="position-row">
-                        <div class="job-title">Executive Lead</div>
-                        <div class="date">November 2023 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">Google Developer Groups - On Campus</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-
-                <!-- See More...-->
-                <!-- 4 -->
-                <div class="experience-tile hidden extra">
-                    <div class="position-row">
-                        <div class="job-title">Co-op Peer Mentor</div>
-                        <div class="date">September 2024 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">Conestoga College</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-    
-                <!-- 5 -->
-                <div class="experience-tile hidden extra">
-                    <div class="position-row">
-                        <div class="job-title">Peer Assisted Learning Leader</div>
-                        <div class="date">September 2024 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">Conestoga College</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-
-                <!-- 6
-                <div class="experience-tile hidden extra">
-                    <div class="position-row">
-                        <div class="job-title">President & Founder</div>
-                        <div class="date">January 2025 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">Conestoga Computing Society</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div> -->
-
-                <!-- 7 -->
-                <div class="experience-tile hidden extra">
-                    <div class="position-row">
-                        <div class="job-title">President & Co-Founder</div>
-                        <div class="date">May 2023 - Present</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">ConHacks (Hackathon)</div>
-                        <div class="job-location">Waterloo, Canada</div>
-                    </div>
-                </div>
-
-                <!-- 8 -->
-                <div class="experience-tile hidden extra">
-                    <div class="position-row">
-                        <div class="job-title">Student Lead</div>
-                        <div class="date">February 2018 - August 2020</div>
-                    </div>
-                    <div class="position-row">
-                        <div class="company-name">Atal Tinkering Labs</div>
-                        <div class="job-location">Hyderabad, India</div>
-                    </div>
-                </div>
+            <div class="placeholder-message">
+                Experience section coming soon...
             </div>
-            
-            <div class="see-more" onclick="toggleExperiences()">See More...</div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects">
             <h2>Projects</h2>
-            <p>Content goes here...</p>
+            <div class="placeholder-message">
+                Projects section coming soon...
+            </div>
         </section>
-
     </main>
 
     <!-- JavaScript -->
@@ -967,25 +571,6 @@
         });
 
         // ============================
-        // See more... Button
-        // ============================
-        function toggleExperiences() {
-            const extraExperiences = document.querySelectorAll('.experience-tile.extra');
-            const seeMoreBtn = document.querySelector('.see-more');
-            const isExpanded = extraExperiences[0].classList.contains('hidden');
-            
-            extraExperiences.forEach(exp => {
-                if (isExpanded) {
-                    exp.classList.remove('hidden');
-                } else {
-                    exp.classList.add('hidden');
-                }
-            });
-            
-            seeMoreBtn.textContent = isExpanded ? 'See Less...' : 'See More...';
-        }
-
-        // ============================
         // Scroll Handling
         // ============================
         const handleScroll = () => {
@@ -993,17 +578,13 @@
             const header = qs('header');
             header.classList.toggle('header-scrolled', window.scrollY > 1);
 
-            // Scroll indicator visibility
-            const scrollIndicator = qs('.scroll-indicator');
-            const experienceSection = qs('#experience');
-            const experiencePosition = experienceSection.getBoundingClientRect().top;
-            if (experiencePosition < window.innerHeight) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.pointerEvents = 'none';
-            } else {
-                scrollIndicator.style.opacity = '1';
-                scrollIndicator.style.pointerEvents = 'auto';
-            }
+            // Social sidebar glow effect
+            const socialSidebar = qs('.social-sidebar');
+            socialSidebar.classList.toggle('scrolled', window.scrollY > 1);
+            
+            // Right sidebar glow effect
+            const rightSidebar = qs('.right-sidebar');
+            rightSidebar.classList.toggle('scrolled', window.scrollY > 1);
             
             // Navigation highlight
             const sections = qsa('section');
@@ -1068,56 +649,32 @@
             });
         });
 
-        qs('.scroll-indicator').addEventListener('click', () => {
-            qs('#experience').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+        // ============================
+        // AI Input Handling
+        // ============================
+        const aiInput = document.querySelector('.ai-input');
+        const aiSendBtn = document.querySelector('.ai-send-btn');
+
+        aiInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                handleAiRequest(this.value.trim());
+            }
         });
 
-        // ============================
-        // Skills Toggle
-        // ============================
-        const viewToggle = qs('#viewToggle');
-        const skillsGrid = qs('.skills-grid');
-        const toggleLabels = qsa('.toggle-label');
-
-        viewToggle.addEventListener('change', function() {
-            skillsGrid.classList.toggle('show-advanced');
-            toggleLabels.forEach(label => label.classList.toggle('active'));
+        aiSendBtn.addEventListener('click', function() {
+            const query = aiInput.value.trim();
+            if (query !== '') {
+                handleAiRequest(query);
+            }
         });
 
-        function checkOverflow() {
-            const songContainers = document.querySelectorAll('.spotify-song');
-            const artistContainers = document.querySelectorAll('.spotify-artist');
-            
-            songContainers.forEach(container => {
-                const scrollContainer = container.querySelector('.scroll-container');
-                const textContent = container.querySelector('.song-scroll');
-                
-                if (textContent.offsetWidth <= container.offsetWidth) {
-                    scrollContainer.style.animation = 'none';
-                    scrollContainer.style.justifyContent = 'flex-start';
-                } else {
-                    scrollContainer.style.animation = 'scroll 20s linear infinite';
-                }
-            });
-            
-            artistContainers.forEach(container => {
-                const scrollContainer = container.querySelector('.scroll-container');
-                const textContent = container.querySelector('.artist-scroll');
-                
-                if (textContent.offsetWidth <= container.offsetWidth) {
-                    scrollContainer.style.animation = 'none';
-                    scrollContainer.style.justifyContent = 'flex-start';
-                } else {
-                    scrollContainer.style.animation = 'scroll 20s linear infinite';
-                }
-            });
+        function handleAiRequest(query) {
+            // For now, just clear the input and show alert
+            // This will be replaced with actual LLM API calls later
+            alert('You asked: ' + query + '\n\nLLM integration coming soon!');
+            aiInput.value = '';
+            aiInput.blur();
         }
-
-        // Run on page load and window resize
-        window.addEventListener('load', checkOverflow);
-        window.addEventListener('resize', checkOverflow);
     </script>
 </body>
 </html>
